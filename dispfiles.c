@@ -29,7 +29,7 @@ int main(void)
       }
       pclose(in);
 
-      if (!strcmp(buff,"JPEG image data\n"))
+      if (strstr(buff,"image data") != NULL)
 	{
 	  printf("%s\n", dir->d_name);
 	  printf("%s", buff);
