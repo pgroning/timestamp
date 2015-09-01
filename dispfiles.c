@@ -6,12 +6,23 @@
 #include <stdio.h> 
 #include <string.h>
 
+void usage();
 char *trimwhitespace(char *);
 
 
-
-int main(void)
+int main( int argc, char *argv[] )
 {
+
+  if (argc > 1)
+    {
+      if (strcmp(argv[1],"-h") == 0 || strcmp(argv[1],"--help") == 0)
+	{
+	  usage();
+	  return;
+	}
+    }
+  
+
   DIR           *d;
   struct dirent *dir;
   d = opendir(".");
@@ -82,7 +93,16 @@ int main(void)
   return(0);
 }
 
-
+void usage()
+{
+  printf("Usage: timestamp\n\
+Updates picture metadata with date and time of when it was taken.\n\
+The function reads title, date and time from the file name.\n\
+Format should be:\n\
+<title> (<date> <time>).ext\n\
+Ex:\n\
+title (2015:08:20 10:15:0).jpg\n");
+}
 
 char *trimwhitespace(char *str)
 {
