@@ -1,5 +1,8 @@
 /*
- * This program displays the names of all files in the current directory.
+ * This program updates metadata of images with original date and time in the
+ * current directory. Date and time are extracted from the file name.
+ * The program exiftool is used for writing metadata.
+ * 
  */
 
 #include <dirent.h> 
