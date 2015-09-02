@@ -7,8 +7,6 @@
 #include <string.h>
 
 void usage();
-char *trimwhitespace(char *);
-
 
 int main( int argc, char *argv[] )
 {
@@ -64,11 +62,9 @@ int main( int argc, char *argv[] )
 	      strcpy(imfile,fname);
 	      //puts(imfile);
 	      char *imtitle = strtok(fname,deliml);
-	      trimwhitespace(imtitle);
 	      //puts(imfile);
 	    
 	      char *datime = strtok(NULL,delimr);
-	      trimwhitespace(datime);
 	      //puts(datime);
 
 	      char exif_cmd[128];
@@ -102,25 +98,5 @@ Format should be:\n\
 <title> (<date> <time>).ext\n\
 Ex:\n\
 title (2015:08:20 10:15:0).jpg\n");
-}
-
-char *trimwhitespace(char *str)
-{
-  char *end;
-
-  // Trim leading space
-  while(isspace(*str)) str++;
-
-  if(*str == 0)  // All spaces?
-    return str;
-
-  // Trim trailing space
-  end = str + strlen(str) - 1;
-  while(end > str && isspace(*end)) end--;
-
-  // Write new null terminator
-  *(end+1) = 0;
-
-  return str;
 }
 
