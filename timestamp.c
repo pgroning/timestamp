@@ -20,10 +20,10 @@ int main( int argc, char *argv[] )
 	}
     }
   
-
-  DIR           *d;
+  DIR *d;
   struct dirent *dir;
   d = opendir(".");
+
   if (d)
   {
     while ((dir = readdir(d)) != NULL)
@@ -37,8 +37,8 @@ int main( int argc, char *argv[] )
       strcat(cmd,"\"");
       //printf("%s\n",cmd);
       FILE *in = popen(cmd,"r");
-      char buff[512];
-      while(fgets(buff, sizeof(buff), in)!=NULL){
+      char buff[128];
+      while(fgets(buff, sizeof(buff), in) != NULL){
 	//printf("%s", buff);
       }
       pclose(in);
@@ -71,12 +71,12 @@ int main( int argc, char *argv[] )
 	      strcpy(exif_cmd,"exiftool ");
 	      strcat(exif_cmd,"\"-DateTimeOriginal=");
 	      strcat(exif_cmd,datime);
-	      strcat(exif_cmd,"\" \"");
+	      strcat(exif_cmd,"\" ");
+	      strcat(exif_cmd,"-overwrite_original \"");
 	      strcat(exif_cmd,imfile);
 	      strcat(exif_cmd,"\"");
 	      puts(exif_cmd);
 	      system(exif_cmd);
-	      system("\\rm -f *_original*");
 	    }
 
 	}
